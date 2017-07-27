@@ -11,12 +11,17 @@
 #import "JDDIDIIndexContentView.h"
 #import "JDDIDIIndexViewController.h"
 #import "JDDIDIKuaiCheViewController.h"
+#import "JDMapViewController.h"
+#import "JDMapManager.h"
+#import "JDCenterView.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet JDDIDIIndexTopView *topView;
 
 @property (weak, nonatomic) IBOutlet JDDIDIIndexContentView *contentView;
+
+@property (nonatomic,strong) JDCenterView *centerView;
 
 @end
 
@@ -30,16 +35,23 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
+    
+    [self addMapViewController:self superView:self.view currentCity:@"杭州"];
+    [self.view addSubview:self.centerView];
+    self.centerView.center = CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height-64-self.centerView.frame.size.height)/2);
+    
+    
     self.topView.titleArray = @[@"顺风车",@"快车",@"ofo单车",@"专车",@"出租车"];
+    self.topView.backgroundColor = [UIColor whiteColor];
     
     self.contentView.viewController = self;
     
     self.contentView.contentArray = @[
-                                      [[JDDIDIIndexViewController alloc] initWithBackgourndColor:@"#cecece"],
-                                      [[JDDIDIKuaiCheViewController alloc] initWithBackgourndColor:@"#ffffff"],
-                                      [[JDDIDIIndexViewController alloc] initWithBackgourndColor:@"#000000"],
-                                      [[JDDIDIIndexViewController alloc] initWithBackgourndColor:@"#ff0000"],
-                                      [[JDDIDIIndexViewController alloc] initWithBackgourndColor:@"#cecece"],
+                                      [[JDDIDIIndexViewController alloc] init],
+                                      [[JDDIDIKuaiCheViewController alloc] init],
+                                      [[JDDIDIIndexViewController alloc] init],
+                                      [[JDDIDIIndexViewController alloc] init],
+                                      [[JDDIDIIndexViewController alloc] init],
                                       ];
     
     __weak typeof (self)_weakSelf = self;
@@ -50,6 +62,54 @@
         _weakSelf.topView.selectedIndex = index;
     };
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+
+
+#pragma mark --------------------------------------
+- (void)addMapViewController:(UIViewController *)viewController superView:(UIView *)superView currentCity:(NSString *)city{
+    [[JDMapManager sharedInstance] start:nil];
+    //添加地图
+    JDMapViewController *mapViewController = [[JDMapViewController alloc]init];
+    
+    //设置位置
+    mapViewController.city = city;
+    mapViewController.point = HsMapLocationPointMake(30.19, 120.17, nil, nil);
+    //设置缩放等级
+    mapViewController.zoomLevel = 15;
+    
+    //加入地图工具
+    mapViewController.showTools = YES;
+    //显示用户位置
+    mapViewController.showsUserLocation = YES;
+    
+    mapViewController.scale = NO;
+    UIView *mapView = mapViewController.view;
+    mapView.frame = superView.bounds;
+    mapView.tag = 1000;
+    mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    [superView insertSubview:mapView atIndex:0];
+    //生命周期
+    [viewController addChildViewController:mapViewController];
+    
+    mapViewController.onClickedMapBlank = ^{
+        [self.view endEditing:YES];
+    };
+    mapViewController.mapCenterBlock = ^(CGPoint point){
+        [self.centerView startLoading];
+    };
+    mapViewController.reverseGeoCodeResultBlock = ^(NSDictionary *addressInfo){
+        
+    };
+    
+}
+
+- (JDCenterView *)centerView {
+    if (_centerView == nil) {
+        CGFloat height = 80;
+        _centerView = [[JDCenterView alloc] initWithFrame:CGRectMake(0, 0, 250, height)];
+    }
+    return _centerView;
 }
 
 

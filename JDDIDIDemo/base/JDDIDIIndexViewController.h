@@ -16,8 +16,6 @@ typedef NS_ENUM(NSInteger) {
 
 @interface JDDIDIIndexViewController : UIViewController
 
-- (instancetype)initWithBackgourndColor:(NSString *)color;
-
 - (void)viewWillShow:(JDDirection)direction;
 
 @end

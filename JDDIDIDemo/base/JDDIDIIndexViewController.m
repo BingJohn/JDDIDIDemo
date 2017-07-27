@@ -12,6 +12,14 @@
 
 @implementation JDDIDIIndexViewController
 
+- (instancetype)init {
+
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -19,13 +27,6 @@
     // Drawing code
 }
 */
-
-- (instancetype)initWithBackgourndColor:(NSString *)color {
-    if(self  = [super init]){
-        self.view.backgroundColor = [self colorWithHexString:color];
-    }
-    return self;
-}
 
 
 - (UIColor *)colorWithHexString: (NSString *)stringToConvert {
@@ -62,6 +63,9 @@
 }
 
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    NSLog(@"touches");
+}
 - (void)viewWillShow:(JDDirection)direction {
     NSLog(@"%ld",direction);
 }

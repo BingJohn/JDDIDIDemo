@@ -70,4 +70,17 @@
 //    return [super hitTest:point withEvent:event];
 //}
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    for (UIView *subview in [self.subviews reverseObjectEnumerator]) {
+        
+        CGPoint convertedPoint = [subview convertPoint:point fromView:self];
+        UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];
+        if (hitTestView && ![hitTestView isMemberOfClass:[UIView class]]) {
+            return hitTestView;
+        }
+    }
+    return nil;
+}
+
+
 @end
