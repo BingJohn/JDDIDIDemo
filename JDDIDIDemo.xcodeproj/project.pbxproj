@@ -24,6 +24,8 @@
 		4D1AF29E1F25D43E006B7845 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AF29A1F25D43E006B7845 /* UIImage+Rotate.m */; };
 		4D1AF2A11F25D50D006B7845 /* JDCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AF2A01F25D50D006B7845 /* JDCenterView.m */; };
 		4D1AF2A41F25D5BD006B7845 /* JDMapLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AF2A31F25D5BD006B7845 /* JDMapLabel.m */; };
+		4D4E68CB1F305AFC007BB8AE /* JDDDSFCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E68CA1F305AFC007BB8AE /* JDDDSFCViewController.m */; };
+		4D4E68CE1F3062DB007BB8AE /* JDOFOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E68CD1F3062DB007BB8AE /* JDOFOViewController.m */; };
 		AAD6B788C8134EA6577DAF69 /* libPods-JDDIDIDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF7A5BCA6D20390D74F3336 /* libPods-JDDIDIDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,10 @@
 		4D1AF2A01F25D50D006B7845 /* JDCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDCenterView.m; sourceTree = "<group>"; };
 		4D1AF2A21F25D5BD006B7845 /* JDMapLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDMapLabel.h; sourceTree = "<group>"; };
 		4D1AF2A31F25D5BD006B7845 /* JDMapLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDMapLabel.m; sourceTree = "<group>"; };
+		4D4E68C91F305AFC007BB8AE /* JDDDSFCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDDSFCViewController.h; sourceTree = "<group>"; };
+		4D4E68CA1F305AFC007BB8AE /* JDDDSFCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDDSFCViewController.m; sourceTree = "<group>"; };
+		4D4E68CC1F3062DB007BB8AE /* JDOFOViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDOFOViewController.h; sourceTree = "<group>"; };
+		4D4E68CD1F3062DB007BB8AE /* JDOFOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDOFOViewController.m; sourceTree = "<group>"; };
 		8FF7A5BCA6D20390D74F3336 /* libPods-JDDIDIDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDDIDIDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03A2205FC9289F806A5A495 /* Pods-JDDIDIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDDIDIDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JDDIDIDemo/Pods-JDDIDIDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +159,8 @@
 		4D1AF2671F2595FA006B7845 /* ofo */ = {
 			isa = PBXGroup;
 			children = (
+				4D4E68CC1F3062DB007BB8AE /* JDOFOViewController.h */,
+				4D4E68CD1F3062DB007BB8AE /* JDOFOViewController.m */,
 			);
 			path = ofo;
 			sourceTree = "<group>";
@@ -160,6 +168,8 @@
 		4D1AF2681F2595FA006B7845 /* sfc */ = {
 			isa = PBXGroup;
 			children = (
+				4D4E68C91F305AFC007BB8AE /* JDDDSFCViewController.h */,
+				4D4E68CA1F305AFC007BB8AE /* JDDDSFCViewController.m */,
 			);
 			path = sfc;
 			sourceTree = "<group>";
@@ -352,8 +362,10 @@
 				4D1AF2501F25959B006B7845 /* main.m in Sources */,
 				4D1AF2911F25CC58006B7845 /* JDDIDIKuaiCheViewController.m in Sources */,
 				4D1AF29C1F25D43E006B7845 /* JDMapViewController.mm in Sources */,
+				4D4E68CB1F305AFC007BB8AE /* JDDDSFCViewController.m in Sources */,
 				4D1AF26E1F25962E006B7845 /* JDDIDIIndexViewController.m in Sources */,
 				4D1AF2741F259665006B7845 /* JDDIDIIndexContentView.m in Sources */,
+				4D4E68CE1F3062DB007BB8AE /* JDOFOViewController.m in Sources */,
 				4D1AF29E1F25D43E006B7845 /* UIImage+Rotate.m in Sources */,
 				4D1AF27B1F2599A3006B7845 /* UIView+jd_autolayout.m in Sources */,
 			);

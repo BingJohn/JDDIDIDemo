@@ -11,8 +11,12 @@
 
 @interface JDDIDIIndexContentView ()<UIScrollViewDelegate>
 
+@property (nonatomic,strong) JDDIDIIndexViewController *currentViewController;
+
 @end
-@implementation JDDIDIIndexContentView
+@implementation JDDIDIIndexContentView{
+    BOOL _animal;
+}
 
 /*
  Only override drawRect: if you perform custom drawing.
@@ -22,53 +26,67 @@
 
 -  (void)setContentArray:(NSArray<JDDIDIIndexViewController *> *)contentArray {
     _contentArray = contentArray;
-    self.delegate = self;
-    self.pagingEnabled = YES;
-    self.scrollEnabled = NO;
-    for(JDDIDIIndexViewController *vc in contentArray){
-        UIView *v = vc.view;
-        [self.viewController addChildViewController:vc];
-        [self addSubview:v];
-    }
-     [self distributeSpacingHorizontally];
+    self.selectedIndex = 0;
 }
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
-    [self setContentOffset:CGPointMake(selectedIndex*self.frame.size.width, 0) animated:YES];
-    [self switchSelectedIndex:selectedIndex];
-}
-
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSUInteger i = scrollView.contentOffset.x/scrollView.frame.size.width;
-    [self switchSelectedIndex:i];
-    if (self.selectBlock) {
-        self.selectBlock(i);
-    }
-}
-
-- (void)switchSelectedIndex:(NSUInteger)index {
-    JDDIDIIndexViewController *v = self.contentArray[index];
+    if(_animal)return;
+    _animal = YES;
+    JDDIDIIndexViewController *v = self.contentArray[selectedIndex];
+    v.view.frame = self.bounds;
+    [self.viewController addChildViewController:v];
+    [self addSubview:v.view];
+    __block CGRect fromFrame = v.view.frame;
+    
     JDDirection d = JDDirectionNone;
-    if(_selectedIndex < index){
+    if(_selectedIndex < selectedIndex){
         d = JDDirectionRight;
-    }else if(_selectedIndex > index){
+        fromFrame.origin.x = self.bounds.size.width;
+        v.view.frame = fromFrame;
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            
+            CGRect toFrame = self.currentViewController.view.frame;
+            toFrame.origin.x = -self.frame.size.width;
+            self.currentViewController.view.frame = toFrame;
+            
+            fromFrame.origin.x = 0;
+            v.view.frame = fromFrame;
+            
+        } completion:^(BOOL finished) {
+            [self.currentViewController.view removeFromSuperview];
+            [self.currentViewController removeFromParentViewController];
+            self.currentViewController = v;
+            _animal = NO;
+        }];
+    }else if(_selectedIndex > selectedIndex){
         d = JDDirectionLeft;
+        
+        fromFrame.origin.x = -self.bounds.size.width;
+        v.view.frame = fromFrame;
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            
+            CGRect toFrame = self.currentViewController.view.frame;
+            toFrame.origin.x = self.frame.size.width;
+            self.currentViewController.view.frame = toFrame;
+            
+            fromFrame.origin.x = 0;
+            v.view.frame = fromFrame;
+            
+        } completion:^(BOOL finished) {
+            [self.currentViewController.view removeFromSuperview];
+            [self.currentViewController removeFromParentViewController];
+            self.currentViewController = v;
+            _animal = NO;
+        }];
+        
+    }else{
+        self.currentViewController = v;
+        _animal = NO;
     }
     [v viewWillShow:d];
-    _selectedIndex = index;
+    _selectedIndex = selectedIndex;
 }
-
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-//    for (UIView *subview in [self.subviews reverseObjectEnumerator]) {
-//        
-//        CGPoint convertedPoint = [subview convertPoint:point fromView:self];
-//        UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];
-//        if (hitTestView) {
-//            return hitTestView;
-//        }
-//    }
-//    return [super hitTest:point withEvent:event];
-//}
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     for (UIView *subview in [self.subviews reverseObjectEnumerator]) {

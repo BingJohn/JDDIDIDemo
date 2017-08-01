@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JDDIDIIndexViewController.h"
 
-@interface JDDIDIIndexContentView : UIScrollView
+@interface JDDIDIIndexContentView : UIView
 
 @property (nonatomic,weak) UIViewController *viewController;
 

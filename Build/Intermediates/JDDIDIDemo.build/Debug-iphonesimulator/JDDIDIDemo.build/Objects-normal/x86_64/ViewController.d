@@ -25,4 +25,6 @@ dependencies: \
   /Users/wangjindong/Documents/github/JDDIDIDemo/Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Headers/BMKBaseIndoorMapInfo.h \
   /Users/wangjindong/Documents/github/JDDIDIDemo/JDDIDIDemo/map/JDMapManager.h \
   /Users/wangjindong/Documents/github/JDDIDIDemo/Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Location.framework/Headers/BMKLocationService.h \
-  /Users/wangjindong/Documents/github/JDDIDIDemo/JDDIDIDemo/map/JDCenterView.h
+  /Users/wangjindong/Documents/github/JDDIDIDemo/JDDIDIDemo/map/JDCenterView.h \
+  /Users/wangjindong/Documents/github/JDDIDIDemo/JDDIDIDemo/sfc/JDDDSFCViewController.h \
+  /Users/wangjindong/Documents/github/JDDIDIDemo/JDDIDIDemo/ofo/JDOFOViewController.h

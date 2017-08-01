@@ -14,6 +14,8 @@
 #import "JDMapViewController.h"
 #import "JDMapManager.h"
 #import "JDCenterView.h"
+#import "JDDDSFCViewController.h"
+#import "JDOFOViewController.h"
 
 @interface ViewController ()
 
@@ -35,11 +37,8 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    
     [self addMapViewController:self superView:self.view currentCity:@"杭州"];
-    [self.view addSubview:self.centerView];
-    self.centerView.center = CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height-64-self.centerView.frame.size.height)/2);
-    
+   
     
     self.topView.titleArray = @[@"顺风车",@"快车",@"ofo单车",@"专车",@"出租车"];
     self.topView.backgroundColor = [UIColor whiteColor];
@@ -47,9 +46,9 @@
     self.contentView.viewController = self;
     
     self.contentView.contentArray = @[
-                                      [[JDDIDIIndexViewController alloc] init],
+                                      [[JDDDSFCViewController alloc] init],
                                       [[JDDIDIKuaiCheViewController alloc] init],
-                                      [[JDDIDIIndexViewController alloc] init],
+                                      [[JDOFOViewController alloc] init],
                                       [[JDDIDIIndexViewController alloc] init],
                                       [[JDDIDIIndexViewController alloc] init],
                                       ];
@@ -101,6 +100,10 @@
     mapViewController.reverseGeoCodeResultBlock = ^(NSDictionary *addressInfo){
         
     };
+    
+    
+    [mapView addSubview:self.centerView];
+    self.centerView.center = CGPointMake(mapView.frame.size.width/2,(mapView.frame.size.height-self.centerView.frame.size.height)/2);
     
 }
 
