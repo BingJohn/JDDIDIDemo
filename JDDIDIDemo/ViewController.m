@@ -16,6 +16,8 @@
 #import "JDCenterView.h"
 #import "JDDDSFCViewController.h"
 #import "JDOFOViewController.h"
+#import "JDDIDIUserView.h"
+#import "JDDIDIPopView.h"
 
 @interface ViewController ()
 
@@ -31,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"User" style:UIBarButtonItemStyleDone target:self action:@selector(openUser:)];
     
     // 设置CGRectZero从导航栏下开始计算
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
@@ -115,6 +119,10 @@
     return _centerView;
 }
 
+
+- (void)openUser:(id)sender {
+    [JDDIDIPopView show:[[JDDIDIUserView alloc] init]];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
